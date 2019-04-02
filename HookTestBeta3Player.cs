@@ -15,7 +15,7 @@ namespace HookTestBeta3
         public override bool ModifyNurseHeal(NPC nurse, ref int health, ref bool removeDebuffs, ref string chatText)
         {
             if (TimeHealed == null)
-                TimeHealed = DateTime.Now;
+                TimeHealed = DateTime.Now.AddSeconds(20);
 
             Main.NewText($"--------------------------------- ModifyNurseHeal");
             Main.NewText($"               Speaking to Nurse: {nurse.FullName}, {nurse.GivenName}");
@@ -37,7 +37,6 @@ namespace HookTestBeta3
             }
             else
             {
-                TimeHealed = DateTime.Now;
                 return true;
             }
         }
@@ -62,6 +61,8 @@ namespace HookTestBeta3
             Main.NewText($"   RemoveDebuffs?: {removeDebuffs}");
             Main.NewText($"    Price of Heal: {price}");
             Main.NewText($"---------------------------------");
+
+            TimeHealed = DateTime.Now;
         }
 
         public override void PostSellItem(NPC vendor, Item[] shopInventory, Item item)
