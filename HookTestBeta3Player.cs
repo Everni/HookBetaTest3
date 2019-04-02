@@ -18,10 +18,10 @@ namespace HookTestBeta3
                 TimeHealed = DateTime.Now.AddSeconds(20);
 
             Main.NewText($"--------------------------------- ModifyNurseHeal");
-            Main.NewText($"               Speaking to Nurse: {nurse.FullName}, {nurse.GivenName}");
-            Main.NewText($"              Health Before Edit: {health}");
-            Main.NewText($"  RemoveDebuffs Flag Before Edit: {removeDebuffs}");
-            Main.NewText($"            ChatText before Edit: {chatText}");
+            Main.NewText($"                Speaking to Nurse: {nurse.FullName}, {nurse.GivenName}");
+            Main.NewText($"                Health Before Edit: {health}");
+            Main.NewText($"RemoveDebuffs Flag Before Edit: {removeDebuffs}");
+            Main.NewText($"             ChatText before Edit: {chatText}");
             Main.NewText($"---------------------------------");
 
             health = 2;
@@ -45,9 +45,9 @@ namespace HookTestBeta3
         {
             Main.NewText($"--------------------------------- ModifyNursePrice");
             Main.NewText($"    Healed by Nurse: {nurse.FullName}, {nurse.GivenName}");
-            Main.NewText($"      Health Healed: {health}");
+            Main.NewText($"        Health Healed: {health}");
             Main.NewText($"     RemoveDebuffs?: {removeDebuffs}");
-            Main.NewText($"  Price before Edit: {price}");
+            Main.NewText($"    Price before Edit: {price}");
             Main.NewText($"---------------------------------");
 
             price = 1;
@@ -69,8 +69,8 @@ namespace HookTestBeta3
         {
             Main.NewText($"--------------------------------- PostNurseHeal");
             Main.NewText($"                       Item sold to: {vendor.FullName}, {vendor.GivenName}");
-            Main.NewText($"  Current items in shop before sale: {string.Join(",", shopInventory.Select(x => x.Name))}");
-            Main.NewText($"         Item that player just sold: {item.Name}");
+            Main.NewText($"  Current items in shop before sale: {string.Join(", ", shopInventory.Select(x => x.Name))}");
+            Main.NewText($"         Item that player just sold: {item.Name} - Amount: {item.stack}");
             Main.NewText($"---------------------------------");
         }
 
@@ -78,8 +78,9 @@ namespace HookTestBeta3
         {
             Main.NewText($"--------------------------------- CanSellItem");
             Main.NewText($"  NPC that player is trying to sell to: {vendor.FullName}, {vendor.GivenName}");
-            Main.NewText($"     Current items in shop before sale: {string.Join(",", shopInventory.Select(x => x.Name))}");
-            Main.NewText($"         Item player is trying to sell: {item.Name}");
+            Main.NewText($"         Item player is trying to sell: {item.Name} - Amount: {item.stack}");
+            Main.NewText($"     Current items in shop before sale:");
+            Main.NewText($"{string.Join(",", shopInventory.Select(x => x.Name))}");
             Main.NewText($"---------------------------------");
 
             if (item.Name == "Shuriken")
@@ -92,17 +93,19 @@ namespace HookTestBeta3
         {
             Main.NewText($"--------------------------------- PostBuyItem");
             Main.NewText($"  NPC that player bought from: {vendor.FullName}, {vendor.GivenName}");
-            Main.NewText($"        Current items in shop: {string.Join(",", shopInventory.Select(x => x.Name))}");
-            Main.NewText($"      Item that player bought: {item.Name}");
+            Main.NewText($"      Item that player bought: {item.Name} - Amount: {item.stack}");
+            Main.NewText($"Current items in shop: ");
+            Main.NewText($"{string.Join(",", shopInventory.Select(x => x.Name))}");
             Main.NewText($"---------------------------------");
         }
 
         public override bool CanBuyItem(NPC vendor, Item[] shopInventory, Item item)
         {
             Main.NewText($"--------------------------------- CanSellItem");
-            Main.NewText($"  NPC that player is trying to buy from: {vendor.FullName}, {vendor.GivenName}");
-            Main.NewText($"                  Current items in shop: {string.Join(",", shopInventory.Select(x => x.Name))}");
-            Main.NewText($"           Item player is trying to buy: {item.Name}");
+            Main.NewText($"NPC that player is trying to buy from: {vendor.FullName}, {vendor.GivenName}");
+            Main.NewText($"            Item player is trying to buy: {item.Name} - Amount: {item.stack}");
+            Main.NewText($"Current items in shop:");
+            Main.NewText($"{string.Join(",", shopInventory.Select(x => x.Name))}");
             Main.NewText($"---------------------------------");
 
             if (item.Name == "Torch")
